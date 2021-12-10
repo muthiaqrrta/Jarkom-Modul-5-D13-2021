@@ -70,9 +70,13 @@ iptables -t nat -A POSTROUTING -s 192.198.0.0/16 -o eth0 -j SNAT --to-s 192.168.
 
 ### D. Mmberikan IP pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian setting DHCP Relay pada router yang menghubungkannya.
 Install DHCP menggunakan perintah `apt-get install isc-dhcp-server -y`
+
 Buka file /etc/default/isc-dhcp-server menggunakan perintah `vi /etc/default/isc-dhcp-server`
+
 Kemudian tambahkan `INTERFACES="eth0"`
+
 Buka file /etc/dhcp/dhcpd.conf dengan perintah `vi /etc/dhcp/dhcpd.conf`
+
 Kemudian tambahkan 
 ```
 subnet 192.198.1.0 netmask 255.255.255.0 {
