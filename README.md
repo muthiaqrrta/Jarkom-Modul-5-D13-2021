@@ -117,6 +117,10 @@ subnet 192.198.0.16 netmask 255.255.255.248{
 ```
 
 ### 1. Mengkonfigurasi Foosha menggunakan iptables, tanpa menggunakan MASQUERADE.
+**Pada Foosha**
+Command yang digunakan `iptables -t nat -A POSTROUTING -s 192.198.0.0/16 -o eth0 -j SNAT --to-s (ip eth0)` yang menyesuaikan dari eth0 tersebut.
+Kemudian, pada semua node yang terkait dilakukan `echo nameserver 192.168.122.1 > /etc/resolv.conf`
+
 ### 2. Drop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
 Pada router Foosha tambahkan role berikut. 
 ```
@@ -143,11 +147,24 @@ Untuk paket yang berasal dari Chiper menggunakan perintah
 iptables -A INPUT -s 192.198.4.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
 iptables -A INPUT -s 192.198.4.0/22 -j REJECT
 ```
+Jadi akses dari subnet Blueno dan Cipher dibatasi dari 07.00 sampai 15.00 di hari Senin-Kamis, dan selain waktu tersebut ditolak.
 
 ### 5. Membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dimana akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya
-
+Pada DNS Server (Doriki) ditambahkan rule berikut
+Untuk paket yang berasal dari ELENA menggunakan perintah
+```
+iptables -A INPUT -s 192.198.2.0/23 -m time --timestart 07:00 --timestop 15:00 -j REJECT
+```
+Untuk paket yang berasal dari FUKUROU menggunakan perintah
+```
+iptables -A INPUT -s 192.198.1.0/24 -m time --timestart 07:00 --timestop 15:00 -j REJECT
+```
+Jadi akses dari subnet Elena dan Fukuro dibatasi dari 00.00 sampai 06.59 dan dari 15.01 sampai 23.59, dan selain waktu tersebut ditolak
 
 ### 6. Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
+**Pada Doriki **
+
+Membuat domain (DNS) yang mengarah ke IP random (dalam hal ini 192.198.8.1) pada file `/etc/bind/named.conf`
 
 
 ## Kendala
