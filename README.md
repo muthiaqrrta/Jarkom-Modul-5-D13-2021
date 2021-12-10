@@ -162,7 +162,7 @@ iptables -A INPUT -s 192.198.1.0/24 -m time --timestart 07:00 --timestop 15:00 -
 Jadi akses dari subnet Elena dan Fukuro dibatasi dari 00.00 sampai 06.59 dan dari 15.01 sampai 23.59, dan selain waktu tersebut ditolak
 
 ### 6. Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
-**Pada Doriki **
+**Pada Doriki**
 
 Membuat domain (DNS) yang mengarah ke IP random (dalam hal ini 192.198.8.1) pada file `/etc/bind/named.conf`
 
