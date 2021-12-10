@@ -75,6 +75,40 @@ Kemudian tambahkan `INTERFACES="eth0"`
 Buka file /etc/dhcp/dhcpd.conf dengan perintah `vi /etc/dhcp/dhcpd.conf`
 Kemudian tambahkan 
 ```
+subnet 192.198.1.0 netmask 255.255.255.0 {
+	range 192.198.1.2 192.198.1.254;
+	option routers 192.198.1.1;
+	option broadcast-address 192.198.1.255;
+	option domain-name-servers 192.198.0.18;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+subnet 192.198.0.128 netmask 255.255.255.128 {
+	range 192.198.0.130 192.198.0.254;
+	option routers 192.198.0.129;
+	option broadcast-address 192.198.0.255;
+	option domain-name-servers 192.198.0.18;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+subnet 192.198.4.0 netmask 255.255.252.0 {
+	range 192.198.4.2 192.198.4.254;
+	option routers 192.198.4.1;
+	option broadcast-address 192.198.4.255;
+	option domain-name-servers 192.198.0.18;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+subnet 192.198.2.0 netmask 255.255.254.0 {
+	range 192.198.2.2 192.198.2.254;
+	option routers 192.198.2.1;
+	option broadcast-address 192.198.2.255;
+	option domain-name-servers 192.198.0.18;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+subnet 192.198.0.16 netmask 255.255.255.248{
+}
 
 ```
 
