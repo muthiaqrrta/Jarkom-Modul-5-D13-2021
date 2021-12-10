@@ -22,7 +22,8 @@ Raihan Alifianto | 05111940000213
    - Jumlah Host pada Fukurou adalah 200 host
 
 ### B. Membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
-   
+
+
 ### C. Melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung
 ### D. Mmberikan IP pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian setting DHCP Relay pada router yang menghubungkannya.
 
