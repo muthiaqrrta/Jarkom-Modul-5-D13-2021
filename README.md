@@ -10,6 +10,8 @@ Raihan Alifianto | 05111940000213
 ## Soal dan Jawaban
 ### A. Membuat topologi jaringan sesuai dengan rancangan yang diberikan.
 
+![image](https://user-images.githubusercontent.com/68548653/145531503-26496f59-1d9f-4e86-aa15-3f5f460f3889.png)
+
    Keterangan : 	
    - Doriki adalah DNS Server
    - Jipangu adalah DHCP Server
