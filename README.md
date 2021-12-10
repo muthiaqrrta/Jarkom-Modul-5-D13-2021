@@ -118,9 +118,36 @@ subnet 192.198.0.16 netmask 255.255.255.248{
 
 ### 1. Mengkonfigurasi Foosha menggunakan iptables, tanpa menggunakan MASQUERADE.
 ### 2. Drop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
+Pada router Foosha tambahkan role berikut. 
+```
+iptables -A FORWARD -p tcp --dport 80 -d 192.198.0.16/29 -i eth0 -j DROP
+```
+Maka paket yang menuju port 80 (HTTP) akan didrop.
+
 ### 3. Membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
+Pada Jipangu dan Doriki, berikan komentar berikut
+```
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
+
 ### 4. Membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dimana akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
+Pada DNS Server (Doriki) ditambahkan rule berikut.
+Untuk paket yang berasal dari Blueno menggunakan perintah
+```
+iptables -A INPUT -s 192.198.0.128/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 192.198.0.128/25 -j REJECT
+```
+Untuk paket yang berasal dari Chiper menggunakan perintah
+```
+iptables -A INPUT -s 192.198.4.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 192.198.4.0/22 -j REJECT
+```
+
 ### 5. Membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dimana akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya
+
+
 ### 6. Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
+
 
 ## Kendala
