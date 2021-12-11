@@ -230,8 +230,16 @@ iptables -t nat -A POSTROUTING -p tcp -d 192.198.0.27 --dport 80 -j SNAT --to-so
 - Pada Maingate dan Jorge masukan `nc -l -p 80`
 - Pada Elena dan Fukurou masukan `nc 192.198.8.1 80`
 - Ketik apa yang ingin anda ketik di Elena atau Fukurou dan lihat hasilnya di Maingate dan Jorge
+
 Testing
 
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/6a.jpeg">
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/6b.jpeg">
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/6c.jpeg">
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/6d.jpeg">
 
 ## Kendala
 - Terdapat anggota yg GNS nya mengalami error
