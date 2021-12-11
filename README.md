@@ -122,6 +122,10 @@ Command yang digunakan `iptables -t nat -A POSTROUTING -s 192.198.0.0/16 -o eth0
 
 Kemudian, pada semua node yang terkait dilakukan `echo nameserver 192.168.122.1 > /etc/resolv.conf`
 
+Testing 
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/no1.jpeg">
+
 ### 2. Drop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
 Pada router Foosha tambahkan role berikut. 
 ```
