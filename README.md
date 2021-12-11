@@ -35,7 +35,7 @@ A7 | 4 | /29 | 255.255.255.248 | 192.198.0.16
 A8 | 4 | /29 | 255.255.255.248 | 192.198.0.24
 Total | 1316 | /21 | 255.255.248.0 | -
 
-<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/CIDR.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/VLSM.jpeg">
 
 ### C. Melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung
 Buat file script.sh kemudian isikan perintah berikut. 
