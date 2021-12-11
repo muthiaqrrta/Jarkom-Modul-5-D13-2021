@@ -67,16 +67,10 @@ service isc-dhcp-relay restart
 iptables -t nat -A POSTROUTING -s 192.198.0.0/16 -o eth0 -j SNAT --to-s 192.168.122.99
 ```
 
-### D. Mmberikan IP pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian setting DHCP Relay pada router yang menghubungkannya.
-Install DHCP menggunakan perintah `apt-get install isc-dhcp-server -y`
+### D. Memberikan IP pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian setting DHCP Relay pada router yang menghubungkannya.
+Memasukan beberapa syntax ke dalam .bashrc seperti perintah `apt-get update` untuk mengupdate isi node dan `apt-get install isc-dhcp-server -y` untuk menginstall DHCP
 
-Buka file /etc/default/isc-dhcp-server menggunakan perintah `vi /etc/default/isc-dhcp-server`
-
-Kemudian tambahkan `INTERFACES="eth0"`
-
-Buka file /etc/dhcp/dhcpd.conf dengan perintah `vi /etc/dhcp/dhcpd.conf`
-
-Kemudian tambahkan 
+Membuat file script.sh untuk memasukan beberapa command seperti `INTERFACES="eth0"` yang diarahkan kedalam file /etc/default/isc-dhcp-server lalu menambahkan command dibawah ini:
 ```
 subnet 192.198.1.0 netmask 255.255.255.0 {
 	range 192.198.1.2 192.198.1.254;
@@ -114,13 +108,14 @@ subnet 192.198.0.16 netmask 255.255.255.248{
 }
 
 ```
-
+dan diarahkan ke dalam file /etc/dhcp/dhcpd.conf
+lalu jalankan command service isc-dhcp-server restart untuk merestart dhcp server
 ### 1. Mengkonfigurasi Foosha menggunakan iptables, tanpa menggunakan MASQUERADE.
 **Pada Foosha**
 
 Command yang digunakan `iptables -t nat -A POSTROUTING -s 192.198.0.0/16 -o eth0 -j SNAT --to-s (ip eth0)` yang menyesuaikan dari eth0 tersebut.
 
-Kemudian, pada semua node yang terkait dilakukan `echo nameserver 192.168.122.1 > /etc/resolv.conf`
+Kemudian, membuat script.sh pada semua node agar bila terrestart dapat dijalankan dari awal tanpa memasukan command lagi, yang dimasukan adalah `echo nameserver 192.168.122.1 > /etc/resolv.conf`
 
 Testing 
 
@@ -231,9 +226,13 @@ iptables -A PREROUTING -t nat -p tcp -d 192.198.8.1 --dport 80 -j DNAT --to-dest
 iptables -t nat -A POSTROUTING -p tcp -d 192.198.0.26 --dport 80 -j SNAT --to-source 192.198.8.1:80
 iptables -t nat -A POSTROUTING -p tcp -d 192.198.0.27 --dport 80 -j SNAT --to-source 192.198.8.1:80
 ```
-
+- Pada Guanhao, Elena, Fukurou, Maingate dan Jorge install netcat dengan cara `apt-get install netcat`
+- Pada Maingate dan Jorge masukan `nc -l -p 80`
+- Pada Elena dan Fukurou masukan `nc 192.198.8.1 80`
+- Ketik apa yang ingin anda ketik di Elena atau Fukurou dan lihat hasilnya di Maingate dan Jorge
 Testing
 
 
 ## Kendala
 - Terdapat anggota yg GNS nya mengalami error
+- Terdapat anggota kami yang web server ngelag 
