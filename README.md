@@ -191,6 +191,48 @@ Testing
 <img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/5b.jpeg">
 
 ### 6. Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
+- membuat domain (DNS) yang mengarah ke IP random (dalam hal ini 192.198.8.1) pada file /etc/bind/named.conf
+
+```
+zone "jarkomD13.com" {
+        type master;
+        file "/etc/bind/jarkom/jarkomD13.com";
+};
+```
+
+- Buat folder jarkom dengan command:
+
+`mkdir /etc/bind/jarkom`
+
+- Lalu copy db.local ke file /etc/bind/jarkom/jarkomD13.com
+
+`Lalu copy db.local ke file /etc/bind/jarkom/jarkomD13.com`
+
+- Lalu edit file /etc/bind/jarkom/jarkomD13.com
+
+```
+$TTL    604800
+@       IN      SOA     jarkomC05.com. root.jarkomD13.com. (
+                        2021120705      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      jarkomD13.com.
+@       IN      A       192.192.8.1
+```
+
+**Guanhao**
+- Masukkan perintah:
+```
+iptables -A PREROUTING -t nat -p tcp -d 192.198.8.1 --dport 80 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.198.0.26:80
+iptables -A PREROUTING -t nat -p tcp -d 192.198.8.1 --dport 80 -j DNAT --to-destination 192.198.0.27:80
+iptables -t nat -A POSTROUTING -p tcp -d 192.198.0.26 --dport 80 -j SNAT --to-source 192.198.8.1:80
+iptables -t nat -A POSTROUTING -p tcp -d 192.198.0.27 --dport 80 -j SNAT --to-source 192.198.8.1:80
+```
+
+Testing
 
 
 ## Kendala
