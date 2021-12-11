@@ -133,12 +133,25 @@ iptables -A FORWARD -p tcp --dport 80 -d 192.198.0.16/29 -i eth0 -j DROP
 ```
 Maka paket yang menuju port 80 (HTTP) akan didrop.
 
+Testing
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/2a.jpeg">
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/2b.jpeg">
+
 ### 3. Membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
 Pada Jipangu dan Doriki, berikan komentar berikut
 ```
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
 ```
+
+Testing
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/3a.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/3b.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/3c.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/3d.jpeg">
 
 ### 4. Membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dimana akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
 Pada DNS Server (Doriki) ditambahkan rule berikut.
@@ -154,6 +167,11 @@ iptables -A INPUT -s 192.198.4.0/22 -j REJECT
 ```
 Jadi akses dari subnet Blueno dan Cipher dibatasi dari 07.00 sampai 15.00 di hari Senin-Kamis, dan selain waktu tersebut ditolak.
 
+Testing 
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/4a.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/4b.jpeg">
+
 ### 5. Membatasi akses ke Doriki yang berasal dari subnet Blueno, Cipher, Elena dan Fukuro dimana akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya
 Pada DNS Server (Doriki) ditambahkan rule berikut
 Untuk paket yang berasal dari ELENA menggunakan perintah
@@ -165,6 +183,12 @@ Untuk paket yang berasal dari FUKUROU menggunakan perintah
 iptables -A INPUT -s 192.198.1.0/24 -m time --timestart 07:00 --timestop 15:00 -j REJECT
 ```
 Jadi akses dari subnet Elena dan Fukuro dibatasi dari 00.00 sampai 06.59 dan dari 15.01 sampai 23.59, dan selain waktu tersebut ditolak
+
+Testing
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/5a.jpeg">
+
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/5b.jpeg">
 
 ### 6. Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
 
