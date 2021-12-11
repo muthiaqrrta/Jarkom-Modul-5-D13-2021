@@ -22,7 +22,6 @@ Raihan Alifianto | 05111940000213
    - Jumlah Host pada Fukurou adalah 200 host
 
 ### B. Membuat topologi tersebut menggunakan teknik CIDR atau VLSM.
-Teknik VLSM 
 
 Nama Subnet | Jumlah Host | Netmask | Subnetmask | IP
 ------------- | ------------- | ------------- | ------------- | -------------
@@ -36,7 +35,7 @@ A7 | 4 | /29 | 255.255.255.248 | 192.198.0.16
 A8 | 4 | /29 | 255.255.255.248 | 192.198.0.24
 Total | 1316 | /21 | 255.255.248.0 | -
 
-<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/VLSM.jpeg">
+<img src="https://github.com/muthiaqrrta/Jarkom-Modul-5-D13-2021/blob/main/screenshot/CIDR.jpeg">
 
 ### C. Melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung
 Buat file script.sh kemudian isikan perintah berikut. 
