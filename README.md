@@ -166,3 +166,4 @@ Jadi akses dari subnet Elena dan Fukuro dibatasi dari 00.00 sampai 06.59 dan dar
 
 
 ## Kendala
+- Terdapat anggota yg GNS nya mengalami error
